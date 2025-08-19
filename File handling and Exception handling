@@ -1,0 +1,30 @@
+# File Read & Write + Error Handling Challenge
+
+def main():
+    # Step 1: Ask the user for a filename
+    filename = input("Enter the filename to read: ")
+
+    try:
+        # Step 2: Try to open and read the file
+        with open(filename, "r") as f:
+            content = f.read()
+
+        # Step 3: Modify the text (e.g., convert to uppercase)
+        modified_content = content.upper()
+
+        # Step 4: Write to a new file
+        with open("modified_output.txt", "w") as f:
+            f.write("Modified Content:\n")
+            f.write(modified_content)
+
+        print("✅ Success! 'modified_output.txt' has been created.")
+
+    except FileNotFoundError:
+        print(f"❌ Error: The file '{filename}' was not found.")
+    except PermissionError:
+        print(f"❌ Error: You don't have permission to read '{filename}'.")
+    except Exception as e:
+        print(f"⚠️ Unexpected error: {e}")
+
+if __name__ == "__main__":
+    main()
